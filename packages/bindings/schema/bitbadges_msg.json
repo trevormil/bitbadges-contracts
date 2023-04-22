@@ -1,0 +1,53 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "BitbadgesMsg",
+    "description": "BitbadgesMsg is an override of CosmosMsg::Custom to add support for Bitbadges's custom message types",
+    "anyOf": [
+        {
+            "type": "object",
+            "required": [
+                "swap"
+            ],
+            "properties": {
+                "swap": {
+                    "$ref": "#/definitions/SwapMsg"
+                }
+            }
+        }
+    ],
+    "definitions": {
+        "HumanAddresses": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "BadgeModuleMsg": {
+            "description": "BadgeModuleMsg captures all possible messages we can return to bitbadges's native badges module",
+            "anyOf": [
+                {
+                    "type": "object",
+                    "required": [
+                        "RegisterAddresses"
+                    ],
+                    "properties": {
+                        "RegisterAddresses": {
+                            "type": "object",
+                            "required": [
+                                "addresses_to_register"
+                            ],
+                            "properties": {
+                                "addresses_to_register": {
+                                    "$ref": "#/definitions/HumanAddresses"
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "Uint128": {
+            "type": "string"
+        }
+    }
+}
